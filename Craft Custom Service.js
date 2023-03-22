@@ -21,7 +21,7 @@ function selectOptions(array, selectId) {
     return result;
 }
 
-let existingCustomCategories = await game.settings.storage.get("world").find(e => e.key === "item-piles.customItemCategories").value
+let existingCustomCategories = await game.settings.storage.get("world").find(e => e.key === "item-piles.customItemCategories")?.value || [];
 let categories = [
     "loot",
     ...existingCustomCategories,
