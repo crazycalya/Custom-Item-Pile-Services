@@ -125,8 +125,9 @@ class CraftService extends Dialog {
                             if (custom) {
                                 if (!existingCustomCategories.some(e => e === custom)) {
                                     // Add new custom to the list of categories
-                                    game.settings.storage.get("world").find(e => e.key === "item-piles.customItemCategories").value
-                                        .push(custom)
+                                    let customCategories = game.settings.get("item-piles", "customItemCategories");
+                                    customCategories.push(custom);
+                                    game.settings.set("item-piles", "customItemCategories", customCategories);
                                 } else {
                                     html.find("#customCategory").css('border-color', 'red');
                                     throw 'Custom category already exists.'
